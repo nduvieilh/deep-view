@@ -5,50 +5,31 @@
     "version": "0.2.0",
     "diagnosticLogging": true,
     "configurations": [
+        // {
+        //     "type": "node",
+        //     "request": "launch",
+        //     "name": "Nodemon",
+        //     "runtimeExecutable": "nodemon",
+        //     "args": ["${workspaceRoot}/src/server.js"],
+        //     "restart": true,
+        //     "protocol": "inspector",
+        //     "stopOnEntry": false,
+        //     "runtimeArgs": [
+        //       "--nolazy",
+        //       "--require",
+        //       "@babel/register"
+        //     ],
+        //     "sourceMaps": true
+        // }
         {
             "type": "node",
             "request": "launch",
-            "name": "Nodemon",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/nodemon/bin/nodemon.js",
-            "args": ["${workspaceRoot}/dist/server.js"],
+            "name": "nodemon",
+            "runtimeExecutable": "nodemon",
+            "program": "${workspaceFolder}/src/server.js",
             "restart": true,
-            "protocol": "inspector",
-            "stopOnEntry": false,
-            "runtimeArgs": [
-              "--nolazy",
-              "--require",
-              "babel-register"
-            ],
-            "sourceMaps": true
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceRoot}/dist/index.js",
-            "cwd": "${workspaceRoot}",
-            "preLaunchTask": "build",
-            "outFiles": [
-                "${workspaceRoot}/dist/**.js"
-            ]
-        },
-        {
-            "name": "Launch",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceRoot}/src/server.js",
-            "stopOnEntry": false,
-            "args": [],
-            "cwd": "${workspaceRoot}",
-            "preLaunchTask": "build",
-            "runtimeExecutable": null,
-            "runtimeArgs": [ "--nolazy" ],
-            "env": {
-                "NODE_ENV": "development"
-            },
-            "externalConsole": false,
-            "sourceMaps": true,
-            "outDir": "${workspaceRoot}/dist"
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }
