@@ -5,22 +5,6 @@
     "version": "0.2.0",
     "diagnosticLogging": true,
     "configurations": [
-        // {
-        //     "type": "node",
-        //     "request": "launch",
-        //     "name": "Nodemon",
-        //     "runtimeExecutable": "nodemon",
-        //     "args": ["${workspaceRoot}/src/server.js"],
-        //     "restart": true,
-        //     "protocol": "inspector",
-        //     "stopOnEntry": false,
-        //     "runtimeArgs": [
-        //       "--nolazy",
-        //       "--require",
-        //       "@babel/register"
-        //     ],
-        //     "sourceMaps": true
-        // }
         {
             "type": "node",
             "request": "launch",

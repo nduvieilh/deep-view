@@ -2,19 +2,19 @@ require("@babel/register");
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 const port = 3000;
+const routes = require('./router.js');
 
 app.use(bodyParser.json());
 
-app.post('/api/extract', (req, res) => {
-    let body = req.body;
-    
-    console.log('adsf', body);
-    // Stringify body
-    let response = JSON.stringify(body);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-    res.send(response); 
-});
+app.use(cors());
+
+// Routes
+app.use(routes.router);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
