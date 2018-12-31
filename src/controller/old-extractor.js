@@ -159,4 +159,4 @@ class Instance {
     }
 }
 
-run();
+exports.

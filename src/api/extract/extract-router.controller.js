@@ -1,6 +1,7 @@
 const express = require('express');
 
 const Router = express.Router();
+const ActionsQueue = require('../../controller/actions-queue.controller');
 
 class ExtractRouter {
     /**
@@ -10,7 +11,7 @@ class ExtractRouter {
         this.router = Router;
         this.init();
     }
-
+    
     extract(req, res) {
         let body = req.body;
     
@@ -21,9 +22,19 @@ class ExtractRouter {
         res.send(response); 
     }
 
-    // get router() {
-    //     return this._router;
-    // }
+    verify(req, res) {
+        let body = req.body;
+        let config = body.config;
+        let valid = false;
+
+        if(config) {
+            let actionsQueue = new ActionsQueue(config);
+
+            valid = actionsQueue.verify();
+        }
+
+        res.send(valid);
+    }
 
     /**
      * Take each handler, and attach to one of the Express.Router's
@@ -31,11 +42,11 @@ class ExtractRouter {
      */
     init() {
         this.router.post('/', this.extract);
+        this.router.post('/verify', this.verify);
     }
 
 }
 
-// Create the HeroRouter, and export its configured Express.Router
 const extractRouter = new ExtractRouter();
 extractRouter.init();
 
