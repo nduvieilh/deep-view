@@ -24,7 +24,7 @@ class ExtractRouter {
 
     verify(req, res) {
         let body = req.body;
-        let config = body.config;
+        let config = body;
         let valid = false;
 
         if(config) {

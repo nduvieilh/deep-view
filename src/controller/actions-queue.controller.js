@@ -1,30 +1,43 @@
 const Navigate = require('../models/actions/navigate.model');
+const Input = require('../models/actions/input.model');
+const Screenshot = require('../models/actions/screenshot.model');
 
 class ActionsQueue {
     constructor(config) {
         this.config = config;
-        this.actions = castActions();
+        this.actions = this.castActions();
     }
 
-    castActions(actions) {
-        for(actions in this.config.actions) {
+    castActions() {
+        let actions = [];
+        //for(let action in this.config.actions) {
+        this.config.actions.forEach(action => {
             switch(action.action) {
                 case 'navigate':
-                    this.actions.push(new Navigate(action));
+                    actions.push(new Navigate(action));
                     break;
+                case 'input':
+                    actions.push(new Input(action));
+                    break;
+                case 'screenshot':
+                    actions.push(new Screenshot(action));
             }
-        }
+        });
+        //}
+
+        return actions;
     }
 
     verify() {
-        for(action in this.actions) {
+        this.actions.forEach(action => {
             if(!action.verify()) {
                 return false;
             }
-        }
+        });
 
         return true;
     }
 }
 
-exports.defineQueue = ActionsQueue;
+//exports.ActionsQueue = ActionsQueue;
+module.exports = ActionsQueue;

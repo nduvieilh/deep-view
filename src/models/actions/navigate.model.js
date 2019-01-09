@@ -12,4 +12,4 @@ class Navigate {
     }
 }
 
-exports.Navigate = Navigate;
+module.exports = Navigate;
