@@ -1,17 +1,10 @@
-const Action = require('./navigate.model');
+const Action = require('./action.model');
 
 class Input extends Action {
     constructor(primitive) {
         super(primitive);
         this.selector = primitive.selector;
         this.value = primitive.value;
-
-        super.properties = {
-            selector: {
-                required: false,
-                type: 'string'
-            }
-        };
     }
 
     verify() {

@@ -1,6 +1,9 @@
-class Navigate {
+const Action = require('./action.model');
+
+class Navigate extends Action {
     constructor(primitive) {
-        this.url = primitive.url;
+        super(primitive);
+        this.url = new URL(primitive.url);
     }
 
     verify() {
@@ -9,6 +12,14 @@ class Navigate {
         }
 
         return false;
+    }
+
+    async run(page) {
+        try {
+            await page.goto(this.url.toString());
+        } catch(e) {
+            console.error(this.url, e);
+        }
     }
 }
 

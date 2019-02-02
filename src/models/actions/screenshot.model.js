@@ -1,5 +1,8 @@
-class Screenshot {
+const Action = require('./action.model');
+
+class Screenshot extends Action {
     constructor(primitive) {
+        super(primitive);
         this.type = primitive.type;
         // Properties for Coordinates type
         this.x = primitive.x;

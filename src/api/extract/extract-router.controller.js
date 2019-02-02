@@ -12,12 +12,20 @@ class ExtractRouter {
         this.init();
     }
     
-    extract(req, res) {
+    async extract(req, res) {
         let body = req.body;
-    
-        console.log('test', body);
-        // Stringify body
-        let response = JSON.stringify(body);
+        let config = body;
+        let response;
+        
+        if(config) {
+            try {
+                let actionsQueue = new ActionsQueue(config);
+
+                response = await actionsQueue.extract();
+            } catch(e) {
+                res.status(500).send(e);
+            }
+        }
     
         res.send(response); 
     }
